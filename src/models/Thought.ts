@@ -1,4 +1,5 @@
 import { Schema, Types, model, type Document } from 'mongoose';
+// import { Schema, Types, model, type Document, type SchemaTypeOptions } from 'mongoose';
 import { formatDate } from '../utils/dateFormat.js';
 
 interface IReaction extends Document {
@@ -32,13 +33,18 @@ const reactionSchema = new Schema<IReaction>(
       type: String,
       required: true,
     },
+    // createdAt: {
+    //   type: Date,
+    //   default: Date.now,
+    //   // get: (timestamp: Date) =>
+    //   //   timestamp.toLocaleString('en-US', { timeZone: 'UTC' }),
+    //   get: formatDate, // 🟢 This calls formatter on query
+    // },
     createdAt: {
       type: Date,
       default: Date.now,
-      // get: (timestamp: Date) =>
-      //   timestamp.toLocaleString('en-US', { timeZone: 'UTC' }),
-      get: formatDate, // 🟢 This calls formatter on query
-    },
+      get: formatDate,
+    } as any, // 👈 this shuts up TypeScript without breaking functionality    
   },
   {
     toJSON: {
@@ -57,15 +63,19 @@ const thoughtSchema = new Schema<IThought>(
       minlength: 1,
       maxlength: 280,
     },
+    // createdAt: {
+    //   type: Date,
+    //   default: Date.now,
+    //   // get: (timestamp: Date) =>
+    //   //   timestamp.toLocaleString('en-US', { timeZone: 'UTC' }),
+    //   get: formatDate, // 🟢 This calls formatter on query
+    // },
     createdAt: {
       type: Date,
       default: Date.now,
-      // get: (timestamp: Date) =>
-      //   timestamp.toLocaleString('en-US', { timeZone: 'UTC' }),
-      get: formatDate, // 🟢 This calls formatter on query
-    },
+      get: formatDate,
+    } as any, // 👈 same here
     
-
     username: {
       type: String,
       required: true,
