@@ -30,6 +30,7 @@ export const getSingleUser = async (req: Request, res: Response) => {
   } catch (err: any) {
     res.status(500).json({ message: err.message });
   }
+  return;
 };
 
 /**
@@ -62,6 +63,7 @@ export const updateUser = async (req: Request, res: Response) => {
   } catch (err: any) {
     res.status(500).json({ message: err.message });
   }
+  return;
 };
 
 /**
@@ -82,6 +84,7 @@ export const deleteUser = async (req: Request, res: Response) => {
   } catch (err: any) {
     res.status(500).json({ message: err.message });
   }
+  return;
 };
 
 /**
@@ -103,6 +106,7 @@ export const addFriend = async (req: Request, res: Response) => {
   } catch (err: any) {
     res.status(500).json({ message: err.message });
   }
+  return;
 };
 
 /**
@@ -124,4 +128,5 @@ export const removeFriend = async (req: Request, res: Response) => {
   } catch (err: any) {
     res.status(500).json({ message: err.message });
   }
+  return;
 };

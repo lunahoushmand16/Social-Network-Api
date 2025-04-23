@@ -17,8 +17,9 @@ export const getThoughts = async (_req: Request, res: Response) => {
  * GET a single thought by its ID
  */
 export const getSingleThought = async (req: Request, res: Response) => {
+  const { thoughtId } = req.params;
   try {
-    const thought = await Thought.findById(req.params.thoughtId);
+    const thought = await Thought.findById(thoughtId);
     if (!thought) {
       return res.status(404).json({ message: 'No thought with that ID' });
     }
@@ -26,6 +27,7 @@ export const getSingleThought = async (req: Request, res: Response) => {
   } catch (err: any) {
     res.status(500).json({ message: err.message });
   }
+  return; // ✅ added to satisfy TypeScript
 };
 
 /**
@@ -51,6 +53,7 @@ export const createThought = async (req: Request, res: Response) => {
 
 /**
  * PUT update a thought by its ID
+ * ✅ FIXED: added fallback return for not-found case to satisfy TypeScript
  */
 export const updateThought = async (req: Request, res: Response) => {
   try {
@@ -60,14 +63,18 @@ export const updateThought = async (req: Request, res: Response) => {
       { new: true, runValidators: true }
     );
 
+    // If no thought found, return 404
     if (!thought) {
       return res.status(404).json({ message: 'No thought with this ID' });
     }
 
+    // Return updated thought
     res.json(thought);
   } catch (err: any) {
+    // Return 500 on error
     res.status(500).json({ message: err.message });
   }
+  return;
 };
 
 /**
@@ -91,6 +98,7 @@ export const deleteThought = async (req: Request, res: Response) => {
   } catch (err: any) {
     res.status(500).json({ message: err.message });
   }
+  return;
 };
 
 /**
@@ -112,6 +120,7 @@ export const addReaction = async (req: Request, res: Response) => {
   } catch (err: any) {
     res.status(500).json({ message: err.message });
   }
+  return;
 };
 
 /**
@@ -135,4 +144,5 @@ export const removeReaction = async (req: Request, res: Response) => {
   } catch (err: any) {
     res.status(500).json({ message: err.message });
   }
+  return;
 };
