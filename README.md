@@ -1,4 +1,4 @@
-# Kanban-Board-JWTs-Application
+# Social-Network-Api
 
 ## Description
 
