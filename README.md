@@ -59,8 +59,9 @@ This is a backend API for a social networking web application. It allows users t
 
 ### Screenshots:
 
-![]()
-![]()
+![Get All Users](./assets/Insomnia-%20get%20all%20user.png)
+![Create Thoughts](./assets/Insomnia%20-%20Create%20Thoughts.png)
+![Delete User With ID](./assets/Insomnia%20-%20Delete%20user%20with%20ID.png)
 
 ## Credits
 
