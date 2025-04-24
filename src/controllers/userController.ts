@@ -91,6 +91,11 @@ export const deleteUser = async (req: Request, res: Response) => {
  * POST to add a friend to a user's friend list
  */
 export const addFriend = async (req: Request, res: Response) => {
+  // 🔒 Prevent users from adding themselves as friends
+  if (req.params.userId === req.params.friendId) {
+    return res.status(400).json({ message: "You can't add yourself as a friend!" });
+  }
+  
   try {
     const user = await User.findByIdAndUpdate(
       req.params.userId,

@@ -3,6 +3,7 @@ import { Schema, Types, model, type Document } from 'mongoose';
 export interface IUser extends Document {
   username: string;
   email: string;
+  sex: 'Male' | 'Female'; // ✅ added this for more fun 
   thoughts: Types.ObjectId[];
   friends: Types.ObjectId[];
   friendCount?: number;
@@ -21,6 +22,11 @@ const userSchema = new Schema<IUser>(
       required: true,
       unique: true,
       match: [/.+@.+\..+/, 'Please enter a valid email address'],
+    },
+    sex: {
+      type: String,
+      enum: ['Male', 'Female'],
+      required: true // or make optional if needed
     },
     thoughts: [
       {
